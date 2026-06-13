@@ -74,14 +74,20 @@ if st.button("Analyze Sentiment", type="primary", use_container_width=True):
         st.subheader("Results")
         col1, col2 = st.columns(2)
 
-        with col1:
+      with col1:
             st.markdown("**Neural Network**")
             nn_label = "Positive" if pred_nn else "Negative"
             nn_conf = prob_nn if pred_nn else 1 - prob_nn
-            st.success(nn_label) if pred_nn else st.error(nn_label)
+            if pred_nn:
+                st.success(nn_label)
+            else:
+            st.error(nn_label)
             st.progress(nn_conf, text=f"Confidence: {nn_conf:.0%}")
 
         with col2:
             st.markdown("**SVM (TF-IDF)**")
-            svm_label = "Positive" if pred_svm else "Negative"
-            st.success(svm_label) if pred_svm else st.error(svm_label)
+            svm_label = "Positive" if pred_svm else "Negative"   
+            if pred_svm:
+                st.success(svm_label)
+            else:
+                st.error(svm_label)
