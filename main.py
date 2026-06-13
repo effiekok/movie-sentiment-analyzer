@@ -156,6 +156,24 @@ print(f"{'Neural Network':<20} | {nn_train_time:<15.4f} | {nn_inference_time:<18
 print("="*60)
 
 
+# --- STEP 6: SAVE WORKED MODELS FOR THE WEB APP ---
+import pickle
+
+print("\nSaving trained models locally...")
+# Save SVM and TF-IDF Vectorizer
+with open('svm_model.pkl', 'wb') as f:
+    pickle.dump(svm_model, f)
+with open('tfidf_vectorizer.pkl', 'wb') as f:
+    pickle.dump(tfidf, f)
+
+# Save the Tokenizer
+with open('tokenizer.pkl', 'wb') as f:
+    pickle.dump(tokenizer, f)
+
+# Save Keras Neural Network
+model.save('nn_model.keras')
+print("All models successfully saved as files!")
+
 
 class Colors:
     HEADER = '\033[95m'
