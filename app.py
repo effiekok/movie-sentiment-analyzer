@@ -66,7 +66,7 @@ if st.button("Analyze Sentiment", type="primary", use_container_width=True):
         # SVM Prediction
         pred_svm = int(svm.predict(tfidf.transform([cleaned]))[0])
         
-        # NN Prediction
+       # NN Prediction
         seq = pad_sequences(tokenizer.texts_to_sequences([cleaned]), maxlen=MAX_LENGTH, padding="post", truncating="post")
         prob_nn = float(nn.predict(seq, verbose=0)[0][0])
         pred_nn = int(prob_nn > 0.5)
@@ -74,19 +74,22 @@ if st.button("Analyze Sentiment", type="primary", use_container_width=True):
         st.subheader("Results")
         col1, col2 = st.columns(2)
 
-      with col1:
+        with col1:
             st.markdown("**Neural Network**")
             nn_label = "Positive" if pred_nn else "Negative"
             nn_conf = prob_nn if pred_nn else 1 - prob_nn
+            
             if pred_nn:
                 st.success(nn_label)
             else:
-            st.error(nn_label)
+                st.error(nn_label)
+                
             st.progress(nn_conf, text=f"Confidence: {nn_conf:.0%}")
 
         with col2:
             st.markdown("**SVM (TF-IDF)**")
-            svm_label = "Positive" if pred_svm else "Negative"   
+            svm_label = "Positive" if pred_svm else "Negative"
+            
             if pred_svm:
                 st.success(svm_label)
             else:
