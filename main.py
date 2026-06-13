@@ -19,7 +19,7 @@ from tensorflow.keras.layers import Dense, Embedding, GlobalAveragePooling1D
 
 
 # STEP 1: LOAD AND PREPARE DATA
-print("\n--- 1. STARTING PROCESS ---")
+print("\n 1. STARTING PROCESS ")
 
 FILENAME = 'IMDB Dataset.csv' 
 
@@ -59,7 +59,7 @@ print(f"Final records for training: {len(df)}")
 
 
 # STEP 2: TEXT PREPROCESSING (CLEANING)
-print("\n--- 2. CLEANING TEXTS ---")
+print("\n 2. CLEANING TEXTS ")
 
 def clean_text(text):
     if not isinstance(text, str): return ""
@@ -80,7 +80,7 @@ print(f"Train set: {len(X_train_raw)}, Test set: {len(X_test_raw)}")
 
 
 # STEP 3: MODEL 1 - SVM WITH TF-IDF
-print("\n--- 3. TRAINING SVM WITH TF-IDF ---")
+print("\n 3. TRAINING SVM WITH TF-IDF ")
 
 tfidf = TfidfVectorizer(max_features=5000)
 
@@ -105,7 +105,7 @@ print(classification_report(y_test, y_pred_svm, target_names=['Negative', 'Posit
 
 
 # STEP 4: MODEL 2 - NEURAL NETWORK (NN)
-print("\n--- 4. TRAINING NEURAL NETWORK ---")
+print("\n 4. TRAINING NEURAL NETWORK ")
 
 VOCAB_SIZE = 10000
 MAX_LENGTH = 200
@@ -156,7 +156,7 @@ print(f"{'Neural Network':<20} | {nn_train_time:<15.4f} | {nn_inference_time:<18
 print("="*60)
 
 
-# --- STEP 6: SAVE WORKED MODELS FOR THE WEB APP ---
+# STEP 6: SAVE WORKED MODELS FOR THE WEB APP
 import pickle
 
 print("\nSaving trained models locally...")
@@ -223,7 +223,7 @@ print("\n")
 print_box("  SENTIMENT ANALYSIS APPLICATION  \n     (Movie Review Sentiment)", Colors.HEADER)
 
 while True:
-    print(f"\n{Colors.CYAN}--- New Review ---{Colors.END}")
+    print(f"\n{Colors.CYAN} New Review {Colors.END}")
     print("Write your review in English (or 'exit' to quit):")
 
     # Input
